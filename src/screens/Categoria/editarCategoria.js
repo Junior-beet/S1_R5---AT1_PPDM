@@ -24,7 +24,7 @@ export default function CategoriaScreenEditar() {
     // Quando a tela recebe parâmetros, preenche os estados
     if (route.params) {
       setIdCategoria(route.params.Id) // recebe ID
-      setNomeCategoria(route.params.NomeCategoria); // recebe nome
+      setNomeCategoria(route.params.Nome); // recebe nome
     }
   }, [route.params]); // executa sempre que os parâmetros mudarem
 
@@ -43,7 +43,7 @@ export default function CategoriaScreenEditar() {
     }
 
     // Atualiza a categoria no banco
-    const lista = await categoriaRep.update({ nome:nomeCategoria, id:idCategoria });
+    const lista = await categoriaRep.update({ Nome:nomeCategoria, Id:idCategoria });
 
     // Debug: exibe retorno da atualização
     console.log(lista);

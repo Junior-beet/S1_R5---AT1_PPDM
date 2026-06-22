@@ -63,7 +63,7 @@ export default function CategoriaScreen() {
   }
 
   // Função para deletar uma categoria
-  async function deletarCategoria(id) {
+  async function deletarCategoria(Id) {
     // Exibe alerta de confirmação
     Alert.alert('Confirmação', 'Deseja realmente excluir esta categoria?',
       [
@@ -83,7 +83,7 @@ export default function CategoriaScreen() {
               }
 
               // Executa exclusão
-              await categoriaRep.delete(id);
+              await categoriaRep.delete(Id);
 
               // Atualiza lista após exclusão
               await loadData();
@@ -152,7 +152,7 @@ export default function CategoriaScreen() {
       {/* Lista de categorias */}
       <FlatList
         data={categorias}
-        keyExtractor={(item) => String(item.id)} // Define chave única
+        keyExtractor={(item) => String(item.Id)} // Define chave única
         contentContainerStyle={{ paddingBottom: 20 }}
         renderItem={({ item }) => (
 
@@ -185,7 +185,7 @@ export default function CategoriaScreen() {
                 {/* Botão de excluir */}
                 <TouchableOpacity
                   style={[styles.iconButton, { backgroundColor: "#FFEBEE" }]}
-                  onPress={() => deletarCategoria(item.id)}
+                  onPress={() => deletarCategoria(item.Id)}
                 >
                   <Text style={styles.iconText}>🗑️ Excluir</Text>
                 </TouchableOpacity>

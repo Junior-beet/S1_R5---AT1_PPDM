@@ -3,27 +3,26 @@ import axios from "axios";
 
 export const categoriaRep = {
 
-async findAll() {
-    try {
-        const response = await api.get('/categorias');
+    async findAll() {
+        try {
+            const response = await api.get('/categorias');
 
-        console.log('Resposta da API:', response.data);
+            console.log('Resposta da API:', response.data);
 
-        return response.data.categorias;
+            return response.data.result;
 
-    } catch (error) {
-        console.error('Erro ao buscar categorias:', error);
-        throw error;
-    }
-},
+        } catch (error) {
+            console.error('Erro ao buscar categorias:', error);
+            throw error;
+        }
+    },
 
     async create(Nome) {
         try {
-            const response = await api.post('/categorias', { nome:Nome, Descricao: 'teste padrao para todos ' });
+            
+            const response = await api.post('/categorias', { nome: Nome, descricao: 'teste padrao para todos ' });
             return response.data;
-
         } catch (error) {
-            console.error('Erro ao criar categoria:', error);
             throw error;
         }
     },
@@ -34,12 +33,12 @@ async findAll() {
             const response = await api.put( //recebe o objeto categoria com nome e id
                 '/categorias',
                 {
-                    nome: categoria.nome,
+                    nome: categoria.Nome,
                     descricao: 'teste padrao'
                 },
                 {
                     params: {
-                        id: categoria.id
+                        id: categoria.Id
                     }
                 }
             );
@@ -52,9 +51,10 @@ async findAll() {
         }
     },
 
-    async delete(idCategoria) {
+    async delete(categoria) {
         try {
-            const response = await api.delete(`/categorias/${idCategoria}`);
+            const response = await api.delete(`/categorias/:${categoria.id}`);
+
             return response.data;
         } catch (error) {
             console.error('Erro ao deletar categoria:', error);
